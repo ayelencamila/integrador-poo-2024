@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="biblioteca.controladores.DevolverLibroController"
+            prefWidth="600" prefHeight="400">
+
+    <TableView fx:id="tablaPrestamos" layoutX="20" layoutY="20" prefWidth="560" prefHeight="300">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="colMiembro" text="Miembro" prefWidth="150"/>
+            <TableColumn fx:id="colLibro" text="Libro" prefWidth="150"/>
+            <TableColumn fx:id="colInicio" text="Inicio" prefWidth="100"/>
+            <TableColumn fx:id="colVencimiento" text="Vencimiento" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Button text="Devolver libro" layoutX="220" layoutY="340" onAction="#devolver"/>
+</AnchorPane>

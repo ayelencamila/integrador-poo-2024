@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.AgregarLibroController" prefWidth="400" prefHeight="400">
+    <Label text="Título:" layoutX="20" layoutY="20"/>
+    <TextField fx:id="txtTitulo" layoutX="100" layoutY="20" prefWidth="200"/>
+
+    <Label text="Autor:" layoutX="20" layoutY="60"/>
+    <TextField fx:id="txtAutor" layoutX="100" layoutY="60" prefWidth="200"/>
+
+    <Label text="Categoría:" layoutX="20" layoutY="100"/>
+    <TextField fx:id="txtCategoria" layoutX="100" layoutY="100" prefWidth="200"/>
+
+    <Label text="ISBN:" layoutX="20" layoutY="140"/>
+    <TextField fx:id="txtIsbn" layoutX="100" layoutY="140" prefWidth="200"/>
+
+    <Label text="Editorial:" layoutX="20" layoutY="180"/>
+    <TextField fx:id="txtEditorial" layoutX="100" layoutY="180" prefWidth="200"/>
+
+    <Label text="Idioma:" layoutX="20" layoutY="220"/>
+    <TextField fx:id="txtIdioma" layoutX="100" layoutY="220" prefWidth="200"/>
+
+    <Button text="Guardar" layoutX="150" layoutY="300" onAction="#guardarLibro"/>
+</AnchorPane>
