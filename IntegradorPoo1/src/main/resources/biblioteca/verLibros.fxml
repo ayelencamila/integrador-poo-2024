@@ -49,6 +49,8 @@
           <padding>
         <Insets top="15" right="15" bottom="15" left="15"/>
          </padding>
+        <Button text="Modificar Libro" onAction="#modificarLibro"/>
+         <Button fx:id="btnEliminar" text="Eliminar libro" onAction="#eliminarLibro"/>
        </HBox>
     </bottom>
 
