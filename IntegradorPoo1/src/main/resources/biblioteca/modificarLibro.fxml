@@ -49,7 +49,10 @@
 
     <!-- Botón Guardar -->
     <bottom>
-        <HBox alignment="CENTER" spacing="10" padding="20">
+        <HBox alignment="CENTER" spacing="10" >
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
             <Button text="Guardar Cambios" onAction="#guardarCambios" prefWidth="150"/>
         </HBox>
     </bottom>
