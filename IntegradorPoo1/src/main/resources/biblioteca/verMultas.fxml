@@ -6,7 +6,18 @@
             fx:controller="biblioteca.controladores.VerMultasController"
             prefWidth="700" prefHeight="400">
 
-    <TableView fx:id="tablaMultas" layoutX="20" layoutY="20" prefWidth="660" prefHeight="320">
+    <Label layoutX="20" layoutY="335" text="Estadísticas:" />
+    <Label fx:id="lblTotal" layoutX="110" layoutY="335" text="Total: 0" />
+    <Label fx:id="lblMontoTotal" layoutX="210" layoutY="335" text="Monto total: $0.0" />
+    <Label fx:id="lblPromedio" layoutX="370" layoutY="335" text="Promedio: $0.0" />
+    <Label fx:id="lblMayor" layoutX="520" layoutY="335" text="Mayor: $0.0" />
+
+    <Label layoutX="20" layoutY="360" text="Filtrar por miembro:" />
+    <ComboBox fx:id="comboMiembros" layoutX="150" layoutY="355" prefWidth="300" onAction="#filtrarPorMiembro"/>
+    <Button text="Ver todas" layoutX="460" layoutY="355" onAction="#verTodasLasMultas"/>
+    <Button text="Marcar como PAGADA" layoutX="570" layoutY="355" onAction="#pagarMulta"/>
+
+    <TableView fx:id="tablaMultas" layoutX="20" layoutY="20" prefWidth="660" prefHeight="310">
         <columns>
             <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
             <TableColumn fx:id="colDiasAtraso" text="Días Atraso" prefWidth="100"/>
@@ -17,5 +28,5 @@
         </columns>
     </TableView>
 
-    <Button text="Marcar como PAGADA" layoutX="500" layoutY="350" onAction="#pagarMulta"/>
 </AnchorPane>
+

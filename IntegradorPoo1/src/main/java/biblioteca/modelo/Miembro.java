@@ -1,6 +1,7 @@
 package biblioteca.modelo;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -13,12 +14,9 @@ public class Miembro extends Usuario {
     /**
      * Lista de préstamos asociados al miembro.
      */
-    @OneToMany(mappedBy = "miembro")
+    @OneToMany(mappedBy = "miembro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Prestamo> librosPrestados;
 
-    /**
-     * Constructor por defecto.
-     */
     public Miembro() {}
 
     /**
@@ -28,7 +26,31 @@ public class Miembro extends Usuario {
      * @return true si el préstamo se realizó con éxito, false en caso contrario.
      */
     public boolean prestarLibro(CopiaLibro copia) {
-        // Aquí iría la lógica de préstamo
+        if (this.getEstado() != EstadoUsuario.ALTA) {
+            return false;
+        }
+
+        long prestamosActivos = librosPrestados.stream()
+            .filter(p -> p.getFechaDevolucion() == null)
+            .count();
+
+        if (prestamosActivos >= 5) {
+            return false;
+        }
+
+        if (copia.getEstado() != EstadoCopia.DISPONIBLE || copia.isEsReferencia()) {
+            return false;
+        }
+
+        Prestamo prestamo = new Prestamo();
+        prestamo.setMiembro(this);
+        prestamo.setCopiaLibro(copia);
+        prestamo.setFechaInicio(LocalDate.now());
+        prestamo.setFechaVencimiento(LocalDate.now().plusDays(10));
+
+        copia.setEstado(EstadoCopia.PRESTADA);
+
+        librosPrestados.add(prestamo);
         return true;
     }
 
@@ -39,24 +61,42 @@ public class Miembro extends Usuario {
      * @return true si la devolución se realizó con éxito, false en caso contrario.
      */
     public boolean devolverLibro(CopiaLibro copia) {
-        // Aquí iría la lógica de devolución
+        Prestamo prestamo = librosPrestados.stream()
+            .filter(p -> p.getCopiaLibro().equals(copia) && p.getFechaDevolucion() == null)
+            .findFirst()
+            .orElse(null);
+
+        if (prestamo == null) {
+            return false;
+        }
+
+        LocalDate hoy = LocalDate.now();
+        prestamo.setFechaDevolucion(hoy);
+
+        copia.setEstado(EstadoCopia.DISPONIBLE);
+
+        if (hoy.isAfter(prestamo.getFechaVencimiento())) {
+            int diasAtraso = (int) java.time.temporal.ChronoUnit.DAYS.between(
+                prestamo.getFechaVencimiento(), hoy);
+
+            double monto = diasAtraso * 100.0;
+
+            Multa multa = new Multa();
+            multa.setDiasAtraso(diasAtraso);
+            multa.setMonto(monto);
+            multa.setEstado(EstadoMulta.PENDIENTE);
+            multa.setPrestamo(prestamo);
+
+            prestamo.setMulta(multa);
+        }
+
         return true;
     }
 
-    /**
-     * Obtiene la lista de libros prestados por el miembro.
-     * 
-     * @return la lista de préstamos asociados al miembro.
-     */
     public List<Prestamo> getLibrosPrestados() {
         return librosPrestados;
     }
 
-    /**
-     * Establece la lista de libros prestados por el miembro.
-     * 
-     * @param librosPrestados la lista de préstamos asociados al miembro.
-     */
     public void setLibrosPrestados(List<Prestamo> librosPrestados) {
         this.librosPrestados = librosPrestados;
     }
