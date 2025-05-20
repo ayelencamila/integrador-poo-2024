@@ -141,6 +141,11 @@ public class RealizarPrestamoController {
             mostrarAlerta(Alert.AlertType.WARNING, "Datos incompletos", "Seleccioná una copia disponible.");
             return false;
         }
+        if (copia.getTipo() == biblioteca.modelo.TipoCopia.REFERENCIA) {
+            mostrarAlerta(Alert.AlertType.WARNING, "Copia de referencia", "No se pueden prestar copias de tipo REFERENCIA.");
+            return false;
+                
+        }
 
         if (!vencimiento.isAfter(inicio)) {
             mostrarAlerta(Alert.AlertType.WARNING, "Fecha inválida", "La fecha de vencimiento debe ser posterior a la de inicio.");

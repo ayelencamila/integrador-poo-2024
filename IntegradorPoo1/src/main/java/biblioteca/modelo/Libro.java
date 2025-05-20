@@ -157,4 +157,9 @@ public class Libro implements Serializable {
      * @param copias la lista de copias del libro.
      */
     public void setCopias(List<CopiaLibro> copias) { this.copias = copias; }
+    @Override
+    public String toString() {
+        return titulo + " - " + autor;
+    }
+
 }

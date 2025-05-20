@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.VerCopiasController"
+            prefWidth="700" prefHeight="500">
+
+    <top>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" bottom="10"/>
+            </padding>
+            <Label text="Gestión de Copias"/>
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Seleccionar libro:"/>
+                <ComboBox fx:id="comboLibros" promptText="Seleccione un libro" prefWidth="300"/>
+                <Button text="Buscar copias" onAction="#cargarCopias"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tablaCopias" prefHeight="350">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
+                <TableColumn fx:id="colRack" text="Rack" prefWidth="200"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="15" bottom="15"/>
+            </padding>
+            <Button text="Agregar copia" onAction="#agregarCopia"/>
+            <Button text="Modificar estado" onAction="#modificarCopia"/>
+            <Button text="Eliminar copia" onAction="#eliminarCopia"/>
+        </HBox>
+    </bottom>
+</BorderPane>

@@ -72,6 +72,10 @@ public class Servicio {
                 .stream()
                 .collect(Collectors.toList());
     }
+    
+    public List<CopiaLibro> buscarCopiasPorLibro(Libro libro) {
+        return repo.buscarCopiasPorLibro(libro);
+    }
 
     public long contarPrestamosActivos(Miembro miembro) {
         List<Prestamo> prestamos = repo.buscarTodos(Prestamo.class);
