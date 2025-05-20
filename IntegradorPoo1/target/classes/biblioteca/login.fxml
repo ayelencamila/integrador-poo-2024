@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="biblioteca.controladores.LoginController"
+      style="-fx-padding: 30; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+    <Label text="Iniciar sesión"/>
+    <TextField fx:id="campoUsuario" promptText="ID"/>
+    <PasswordField fx:id="campoClave" promptText="Contraseña" onAction="#handleLogin"/>
+    <Button text="Ingresar" onAction="#handleLogin"/>
+    <Label fx:id="mensajeError" textFill="red"/>
+</VBox>

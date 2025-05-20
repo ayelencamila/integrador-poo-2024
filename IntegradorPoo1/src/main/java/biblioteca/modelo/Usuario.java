@@ -30,11 +30,6 @@ public abstract class Usuario implements Serializable {
     private String apellido;
 
     /**
-     * Correo electrónico del usuario.
-     */
-    private String email;
-
-    /**
      * Contraseña del usuario.
      */
     private String clave;
@@ -46,6 +41,11 @@ public abstract class Usuario implements Serializable {
     private EstadoUsuario estado;
 
     /**
+     * Rol del usuario (por ejemplo, BIBLIOTECARIO o MIEMBRO).
+     */
+    private String rol;
+
+    /**
      * Constructor por defecto.
      */
     public Usuario() {}
@@ -55,27 +55,16 @@ public abstract class Usuario implements Serializable {
      *
      * @param nombre Nombre del usuario.
      * @param apellido Apellido del usuario.
-     * @param email Correo electrónico del usuario.
      * @param clave Contraseña del usuario.
      * @param estado Estado actual del usuario.
+     * @param rol Rol del usuario.
      */
-    public Usuario(String nombre, String apellido, String email, String clave, EstadoUsuario estado) {
+    public Usuario(String nombre, String apellido, String clave, EstadoUsuario estado, String rol) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.email = email;
         this.clave = clave;
         this.estado = estado;
-    }
-
-    /**
-     * Permite al usuario iniciar sesión verificando su correo y contraseña.
-     *
-     * @param email Correo electrónico ingresado.
-     * @param clave Contraseña ingresada.
-     * @return true si las credenciales son correctas, false en caso contrario.
-     */
-    public boolean iniciarSesion(String email, String clave) {
-        return this.email.equals(email) && this.clave.equals(clave);
+        this.rol = rol;
     }
 
     /**
@@ -163,24 +152,6 @@ public abstract class Usuario implements Serializable {
     }
 
     /**
-     * Obtiene el correo electrónico del usuario.
-     *
-     * @return el correo electrónico del usuario.
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * Establece el correo electrónico del usuario.
-     *
-     * @param email el correo electrónico del usuario.
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
      * Obtiene la contraseña del usuario.
      *
      * @return la contraseña del usuario.
@@ -214,5 +185,23 @@ public abstract class Usuario implements Serializable {
      */
     public void setEstado(EstadoUsuario estado) {
         this.estado = estado;
+    }
+
+    /**
+     * Obtiene el rol del usuario.
+     *
+     * @return el rol del usuario.
+     */
+    public String getRol() {
+        return rol;
+    }
+
+    /**
+     * Establece el rol del usuario.
+     *
+     * @param rol el rol del usuario.
+     */
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }

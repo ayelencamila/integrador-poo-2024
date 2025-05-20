@@ -10,6 +10,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import biblioteca.modelo.CopiaLibro;
 import biblioteca.modelo.EstadoCopia;
 import biblioteca.modelo.Libro;
+import javax.persistence.TypedQuery;
 
 import java.util.List;
 
@@ -93,6 +94,10 @@ public class Repositorio {
         .getResultList();
 }
 
+    public List<Libro> obtenerTodosLosLibros() {
+        TypedQuery<Libro> query = em.createQuery("SELECT l FROM Libro l", Libro.class);
+        return query.getResultList();
+    }
 
     public void cerrar() {
         if (em.isOpen()) {

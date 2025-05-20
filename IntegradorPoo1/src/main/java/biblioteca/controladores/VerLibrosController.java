@@ -173,17 +173,19 @@ public class VerLibrosController {
      */
     @FXML
     private void buscarLibro() {
-        String texto = campoBusqueda.getText().toLowerCase();
+        String texto = campoBusqueda.getText().toLowerCase().trim();
 
-        if (texto.trim().isEmpty()) {
-            tablaLibros.setItems(datos);
+        if (texto.isEmpty()) {
+            tablaLibros.setItems(datos); // 'datos' es la lista completa de libros
             return;
         }
 
         ObservableList<Libro> filtrados = FXCollections.observableArrayList();
 
         for (Libro libro : datos) {
-            if (libro.getTitulo() != null && libro.getTitulo().toLowerCase().contains(texto)) {
+            if ((libro.getTitulo() != null && libro.getTitulo().toLowerCase().contains(texto)) ||
+                (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
+                (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
                 filtrados.add(libro);
             }
         }
