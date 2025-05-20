@@ -9,6 +9,7 @@ import javax.persistence.metamodel.SingularAttribute;
 
 import biblioteca.modelo.CopiaLibro;
 import biblioteca.modelo.EstadoCopia;
+import biblioteca.modelo.Libro;
 
 import java.util.List;
 
@@ -85,6 +86,12 @@ public class Repositorio {
     ).getResultList();
     }
     
+    public List<CopiaLibro> buscarCopiasPorLibro(Libro libro) {
+    return em.createQuery(
+        "SELECT c FROM CopiaLibro c WHERE c.libro = :libro", CopiaLibro.class)
+        .setParameter("libro", libro)
+        .getResultList();
+}
 
 
     public void cerrar() {

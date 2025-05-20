@@ -12,5 +12,6 @@ public enum TipoCopia {
     TAPA_DURA,
     RUSTICA,
     AUDIO,
-    ELECTRONICO
+    ELECTRONICO,
+    REFERENCIA
 }

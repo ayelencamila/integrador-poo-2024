@@ -86,4 +86,9 @@ public class Rack {
     public void setCopias(List<CopiaLibro> copias) {
         this.copias = copias;
     }
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+
 }

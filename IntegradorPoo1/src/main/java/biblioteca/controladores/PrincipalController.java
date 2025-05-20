@@ -27,6 +27,13 @@ public class PrincipalController {
     private void verLibros() {
         abrirVista("verLibros.fxml", "Lista de Libros");
     }
+    /**
+     * Abre la vista para ver la lista de copias.
+     */
+    @FXML
+    private void verCopias() {
+    abrirVista("verCopias.fxml", "Gestión de Copias");
+    }
 
     /**
      * Abre la vista para gestionar las multas.
