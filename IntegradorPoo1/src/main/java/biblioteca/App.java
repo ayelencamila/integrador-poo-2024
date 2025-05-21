@@ -21,19 +21,29 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        System.out.println("Entrando al método start...");
         // Inicializa el EntityManagerFactory y Repositorio
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("bibliotecaPU");
         servicio = new Servicio(new Repositorio(emf));
 
         // Generar automáticamente las multas por atraso
-        servicio.generarMultas();  // ← esta es la línea nueva
+        servicio.generarMultas();
 
-        // Cargar el archivo principal.fxml
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("principal.fxml"));
-        scene = new Scene(fxmlLoader.load(), 800, 600);
+        try {
+        System.out.println("Cargando login.fxml...");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/biblioteca/login.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+
         stage.setScene(scene);
-        stage.setTitle("Sistema de Biblioteca");
+        stage.setTitle("Login - Sistema de Biblioteca");
         stage.show();
+
+        System.out.println("Login cargado correctamente.");
+    } catch (Exception e) {
+        System.out.println("❌ Error al cargar login.fxml");
+        e.printStackTrace();
+    }
     }
 
     public static Servicio getServicio() {
@@ -47,7 +57,7 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
 

@@ -149,5 +149,9 @@ public class Servicio {
         repo.modificar(copia);
         repo.confirmarTransaccion();
     }
+
+    public List<Libro> obtenerTodosLosLibros() {
+        return repo.buscarTodos(Libro.class);
+    }
 }
 
