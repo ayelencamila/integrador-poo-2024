@@ -8,7 +8,8 @@ import javafx.stage.Stage;
 
 /**
  * Controlador principal de la aplicación.
- * Proporciona métodos para navegar entre las diferentes vistas de la biblioteca.
+ * Proporciona métodos para navegar entre las diferentes vistas de la
+ * biblioteca.
  */
 public class PrincipalController {
 
@@ -27,12 +28,13 @@ public class PrincipalController {
     private void verLibros() {
         abrirVista("verLibros.fxml", "Lista de Libros");
     }
+
     /**
      * Abre la vista para ver la lista de copias.
      */
     @FXML
     private void verCopias() {
-    abrirVista("verCopias.fxml", "Gestión de Copias");
+        abrirVista("verCopias.fxml", "Gestión de Copias");
     }
 
     /**
@@ -65,6 +67,11 @@ public class PrincipalController {
     @FXML
     private void abrirRegistroPrestamo() {
         abrirVista("realizarPrestamo.fxml", "Registrar Préstamo");
+    }
+
+    @FXML
+    private void abrirPrestamosPorMiembro() {
+        abrirVista("prestamosPorMiembro.fxml", "Préstamos por Miembro");
     }
 
     /**

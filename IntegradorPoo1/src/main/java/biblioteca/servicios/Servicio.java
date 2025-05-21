@@ -66,13 +66,12 @@ public class Servicio {
                 .collect(Collectors.toMap(
                         c -> c.getLibro().getId() + "-" + c.getTipo(),
                         c -> c,
-                        (c1, c2) -> c1
-                ))
+                        (c1, c2) -> c1))
                 .values()
                 .stream()
                 .collect(Collectors.toList());
     }
-    
+
     public List<CopiaLibro> buscarCopiasPorLibro(Libro libro) {
         return repo.buscarCopiasPorLibro(libro);
     }
@@ -153,5 +152,8 @@ public class Servicio {
     public List<Libro> obtenerTodosLosLibros() {
         return repo.buscarTodos(Libro.class);
     }
-}
 
+    public Miembro buscarMiembroPorId(Long id) {
+        return repo.buscarPorId(Miembro.class, id);
+    }
+}
