@@ -17,7 +17,8 @@ import java.util.List;
 
 /**
  * Controlador para la vista de visualización de libros.
- * Permite al usuario ver, buscar, modificar y eliminar libros registrados en el sistema.
+ * Permite al usuario ver, buscar, modificar y eliminar libros registrados en el
+ * sistema.
  */
 public class VerLibrosController {
 
@@ -76,12 +77,19 @@ public class VerLibrosController {
     private TextField campoBusqueda;
 
     /**
+     * Columna que muestra el precio estimado del libro.
+     */
+    @FXML
+    private TableColumn<Libro, Double> colPrecioEstimado;
+
+    /**
      * Lista observable que contiene los libros mostrados en la tabla.
      */
     private ObservableList<Libro> datos;
 
     /**
-     * Inicializa la vista configurando las columnas de la tabla y cargando los libros registrados en el sistema.
+     * Inicializa la vista configurando las columnas de la tabla y cargando los
+     * libros registrados en el sistema.
      */
     @FXML
     public void initialize() {
@@ -92,27 +100,31 @@ public class VerLibrosController {
         colIsbn.setCellValueFactory(new PropertyValueFactory<Libro, String>("isbn"));
         colEditorial.setCellValueFactory(new PropertyValueFactory<Libro, String>("editorial"));
         colIdioma.setCellValueFactory(new PropertyValueFactory<Libro, String>("idioma"));
+        colPrecioEstimado.setCellValueFactory(
+                data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrecioEstimado()).asObject());
 
         List<Libro> libros = App.getServicio().getRepositorio().buscarTodos(Libro.class);
         datos = FXCollections.observableArrayList(libros);
         tablaLibros.setItems(datos);
     }
+
     @FXML
     private void agregarLibro() {
-    try {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("/biblioteca/agregarLibro.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(loader.load()));
-        stage.setTitle("Agregar Libro");
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.showAndWait();
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("agregarLibro.fxml"));
+            Scene scene = new Scene(loader.load());
 
-        // Recargar libros al cerrar la ventana
-        restablecerBusqueda();
-    } catch (Exception e) {
-        e.printStackTrace();
+            AgregarLibroController controller = loader.getController();
+            controller.setListaLibros(datos); // ⬅️ 'datos' es tu ObservableList vinculada a la tabla
+
+            Stage stage = new Stage();
+            stage.setTitle("Agregar Libro");
+            stage.setScene(scene);
+            stage.show(); // ⬅️ Sin .showAndWait() así no se bloquea
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-}
 
     /**
      * Elimina el libro seleccionado de la tabla y del sistema.
@@ -123,7 +135,8 @@ public class VerLibrosController {
         Libro libroSeleccionado = tablaLibros.getSelectionModel().getSelectedItem();
 
         if (libroSeleccionado != null) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar el libro seleccionado?", ButtonType.YES, ButtonType.NO);
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar el libro seleccionado?",
+                    ButtonType.YES, ButtonType.NO);
             confirmacion.setTitle("Confirmar eliminación");
             confirmacion.setHeaderText(null);
 
@@ -185,7 +198,8 @@ public class VerLibrosController {
     }
 
     /**
-     * Filtra los libros en la tabla según el texto ingresado en el campo de búsqueda.
+     * Filtra los libros en la tabla según el texto ingresado en el campo de
+     * búsqueda.
      * Si el campo está vacío, restaura la lista completa.
      */
     @FXML
@@ -201,8 +215,8 @@ public class VerLibrosController {
 
         for (Libro libro : datos) {
             if ((libro.getTitulo() != null && libro.getTitulo().toLowerCase().contains(texto)) ||
-                (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
-                (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
+                    (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
+                    (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
                 filtrados.add(libro);
             }
         }
