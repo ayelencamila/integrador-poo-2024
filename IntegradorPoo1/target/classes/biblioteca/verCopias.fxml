@@ -29,6 +29,7 @@
                 <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
                 <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
                 <TableColumn fx:id="colRack" text="Rack" prefWidth="200"/>
+                <TableColumn fx:id="colPrestadoA" text="Prestado a" prefWidth="200"/>
             </columns>
         </TableView>
     </center>
