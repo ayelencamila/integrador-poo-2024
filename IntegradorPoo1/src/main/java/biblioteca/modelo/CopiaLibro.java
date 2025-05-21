@@ -1,6 +1,7 @@
 package biblioteca.modelo;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Representa una copia de un libro en la biblioteca.
@@ -50,8 +51,8 @@ public class CopiaLibro {
     /**
      * Préstamo asociado a esta copia, si está prestada.
      */
-    @OneToOne(mappedBy = "copiaLibro")
-    private Prestamo prestamo;
+    @OneToMany(mappedBy = "copiaLibro", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prestamo> prestamos;
 
     /**
      * Constructor por defecto.
@@ -132,15 +133,7 @@ public class CopiaLibro {
      */
     public void setRack(Rack rack) { this.rack = rack; }
 
-    /**
-     * Obtiene el préstamo asociado a esta copia.
-     * @return el préstamo asociado.
-     */
-    public Prestamo getPrestamo() { return prestamo; }
+    public List<Prestamo> getPrestamos() { return prestamos; }
 
-    /**
-     * Establece el préstamo asociado a esta copia.
-     * @param prestamo el préstamo asociado.
-     */
-    public void setPrestamo(Prestamo prestamo) { this.prestamo = prestamo; }
+    public void setPrestamos(List<Prestamo> prestamos) { this.prestamos = prestamos; }
 }

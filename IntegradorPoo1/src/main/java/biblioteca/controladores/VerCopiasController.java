@@ -4,6 +4,7 @@ import biblioteca.App;
 import biblioteca.modelo.CopiaLibro;
 import biblioteca.modelo.EstadoCopia;
 import biblioteca.modelo.Libro;
+import biblioteca.modelo.Prestamo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -49,14 +50,20 @@ public class VerCopiasController {
 
         colPrestadoA.setCellValueFactory(cellData -> {
     CopiaLibro copia = cellData.getValue();
-        if (copia.getEstado() == EstadoCopia.PRESTADA && copia.getPrestamo() != null) {
-            var miembro = copia.getPrestamo().getMiembro();
-            return new javafx.beans.property.SimpleStringProperty(
-                miembro.getNombre() + " " + miembro.getApellido()
-            );
-        } else {
-            return new javafx.beans.property.SimpleStringProperty("—");
-        }
+
+    Prestamo activo = copia.getPrestamos().stream()
+        .filter(p -> p.getFechaDevolucion() == null)
+        .findFirst()
+        .orElse(null);
+
+    if (activo != null) {
+        var miembro = activo.getMiembro();
+        return new javafx.beans.property.SimpleStringProperty(
+            miembro.getNombre() + " " + miembro.getApellido()
+        );
+    } else {
+        return new javafx.beans.property.SimpleStringProperty("—");
+    }
 });
 
         List<Libro> libros = App.getServicio().buscarTodosLibros();

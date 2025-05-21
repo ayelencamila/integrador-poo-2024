@@ -41,7 +41,7 @@ public class Prestamo {
     /**
      * Copia del libro asociada al préstamo.
      */
-    @OneToOne
+    @ManyToOne
     private CopiaLibro copiaLibro;
 
     /**
