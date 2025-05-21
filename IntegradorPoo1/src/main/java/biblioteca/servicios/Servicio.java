@@ -156,4 +156,25 @@ public class Servicio {
     public Miembro buscarMiembroPorId(Long id) {
         return repo.buscarPorId(Miembro.class, id);
     }
+    public List<Rack> buscarTodosRacks() {
+    return repo.buscarTodos(Rack.class);
+}
+
+    public void agregarRack(Rack rack) {
+        repo.iniciarTransaccion();
+        repo.insertar(rack);
+        repo.confirmarTransaccion();
+    }
+
+    public void modificarRack(Rack rack) {
+        repo.iniciarTransaccion();
+        repo.modificar(rack);
+        repo.confirmarTransaccion();
+    }
+
+    public void eliminarRack(Rack rack) {
+        repo.iniciarTransaccion();
+        repo.eliminar(rack);
+        repo.confirmarTransaccion();
+    }
 }

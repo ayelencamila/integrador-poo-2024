@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="biblioteca.controladores.VerRacksController"
+            prefWidth="600" prefHeight="400">
+
+    <!-- Título -->
+    <top>
+        <Label text="Gestión de Racks" alignment="CENTER" style="-fx-font-size: 18px; -fx-padding: 15;"/>
+    </top>
+
+    <!-- Tabla de Racks -->
+    <center>
+        <TableView fx:id="tablaRacks" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="400"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Botones -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="15"/>
+            </padding>
+            <Button text="Agregar Rack" onAction="#agregarRack"/>
+            <Button text="Modificar Rack" onAction="#modificarRack"/>
+            <Button text="Eliminar Rack" onAction="#eliminarRack"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

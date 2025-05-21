@@ -14,13 +14,6 @@ import javafx.stage.Stage;
  */
 public class PrincipalController {
 
-    /**
-     * Abre la vista para agregar un nuevo libro.
-     */
-    @FXML
-    private void agregarLibro() {
-        abrirVista("agregarLibro.fxml", "Agregar Libro");
-    }
 
     /**
      * Abre la vista para ver la lista de libros registrados.
@@ -95,9 +88,11 @@ public class PrincipalController {
         }  catch (Exception e) {
             e.printStackTrace();
         }
-}
-
-
+    }   
+    @FXML
+    private void verRacks() {
+        abrirVista("verRacks.fxml", "Gestión de Racks");
+    }
 
 
     /**

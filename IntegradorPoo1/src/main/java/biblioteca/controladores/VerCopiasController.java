@@ -48,14 +48,16 @@ public class VerCopiasController {
                 cellData.getValue().getRack().getDescripcion()));
 
         colPrestadoA.setCellValueFactory(cellData -> {
-            CopiaLibro copia = cellData.getValue();
-            if (copia.getEstado() == EstadoCopia.PRESTADA && copia.getPrestamo() != null) {
-                return new javafx.beans.property.SimpleStringProperty(
-                        copia.getPrestamo().getMiembro().getNombre());
-            } else {
-                return new javafx.beans.property.SimpleStringProperty("—");
-            }
-        });
+    CopiaLibro copia = cellData.getValue();
+        if (copia.getEstado() == EstadoCopia.PRESTADA && copia.getPrestamo() != null) {
+            var miembro = copia.getPrestamo().getMiembro();
+            return new javafx.beans.property.SimpleStringProperty(
+                miembro.getNombre() + " " + miembro.getApellido()
+            );
+        } else {
+            return new javafx.beans.property.SimpleStringProperty("—");
+        }
+});
 
         List<Libro> libros = App.getServicio().buscarTodosLibros();
         comboLibros.setItems(FXCollections.observableArrayList(libros));

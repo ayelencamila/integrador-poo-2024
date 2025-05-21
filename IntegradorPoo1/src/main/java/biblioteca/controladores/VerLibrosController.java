@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.List;
@@ -96,6 +97,22 @@ public class VerLibrosController {
         datos = FXCollections.observableArrayList(libros);
         tablaLibros.setItems(datos);
     }
+    @FXML
+    private void agregarLibro() {
+    try {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/biblioteca/agregarLibro.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(loader.load()));
+        stage.setTitle("Agregar Libro");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+
+        // Recargar libros al cerrar la ventana
+        restablecerBusqueda();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * Elimina el libro seleccionado de la tabla y del sistema.
