@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.ModificarMiembroController"
+            prefWidth="400" prefHeight="350">
+
+    <center>
+        <VBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="ID (solo lectura):"/>
+            <TextField fx:id="campoId" editable="false"/>
+
+            <Label text="Nombre:"/>
+            <TextField fx:id="campoNombre"/>
+
+            <Label text="Apellido:"/>
+            <TextField fx:id="campoApellido"/>
+
+            <Label text="Clave:"/>
+            <PasswordField fx:id="campoClave"/>
+
+            <Label text="Estado:"/>
+            <ComboBox fx:id="comboEstado"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="15" alignment="CENTER">
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+            <Button text="Guardar" onAction="#guardar"/>
+            <Button text="Cancelar" onAction="#cancelar"/>
+        </HBox>
+    </bottom>
+</BorderPane>

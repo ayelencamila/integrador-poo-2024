@@ -45,4 +45,18 @@
     <VBox spacing="8">
         <Button text="Ver Multas" onAction="#verMultas" prefWidth="200"/>
     </VBox>
+
+    <!-- Sección Miembros -->
+    <Label text="Gestión de Miembros" style="-fx-font-weight: bold;" />
+    <VBox spacing="8">
+    <Button text="Ver Miembros" onAction="#verMiembros" prefWidth="200"/>
+    </VBox>
+    <!-- Cierre de sesión -->
+    <VBox alignment="CENTER">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="200"/>
+    </VBox>
+
 </VBox>

@@ -4,6 +4,7 @@ import biblioteca.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 /**
@@ -73,6 +74,31 @@ public class PrincipalController {
     private void abrirPrestamosPorMiembro() {
         abrirVista("prestamosPorMiembro.fxml", "Préstamos por Miembro");
     }
+    @FXML
+    private void verMiembros() {
+        abrirVista("verMiembros.fxml", "Miembros");
+    }
+    @FXML private Button botonCerrarSesion;
+
+    @FXML
+    private void cerrarSesion() {
+        try {
+            Stage actual = (Stage) botonCerrarSesion.getScene().getWindow();
+            actual.close();
+
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("/biblioteca/login.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage loginStage = new Stage();
+            loginStage.setTitle("Iniciar sesión");
+            loginStage.setScene(scene);
+            loginStage.show();
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+}
+
+
+
 
     /**
      * Método genérico para abrir una vista.

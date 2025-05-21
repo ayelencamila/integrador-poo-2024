@@ -7,19 +7,12 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="biblioteca.controladores.VistaMiembroController"
       style="-fx-padding: 30; -fx-border-color: #cccccc; -fx-border-radius: 8;">
-    <Label text="Bienvenido, Miembro" style="-fx-font-size: 18px;"/>
+    <Label fx:id="labelBienvenida" style="-fx-font-size: 18px;"/>
     <HBox spacing="10">
         <TextField fx:id="campoBusqueda" promptText="Buscar libro..."/>
-        <ChoiceBox fx:id="tipoBusqueda">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Título"/>
-                    <String fx:value="Autor"/>
-                    <String fx:value="Categoría"/>
-                </FXCollections>
-            </items>
-        </ChoiceBox>
+        <ChoiceBox fx:id="tipoBusqueda" />
         <Button text="Buscar" onAction="#handleBuscar"/>
+        <Button text="Restablecer" onAction="#handleRestablecer"/>
     </HBox>
     <TableView fx:id="tablaLibros" prefHeight="200" prefWidth="400">
         <columns>
@@ -29,4 +22,5 @@
         </columns>
     </TableView>
     <Label fx:id="mensajeError" textFill="red"/>
+    <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="150"/>
 </VBox>
