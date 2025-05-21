@@ -38,6 +38,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Login - Sistema de Biblioteca");
         stage.show();
+        primaryStage = stage;
 
         System.out.println("Login cargado correctamente.");
     } catch (Exception e) {
@@ -45,10 +46,14 @@ public class App extends Application {
         e.printStackTrace();
     }
     }
-
+    public static Stage getStage() {
+        return primaryStage;
+    }
+    
     public static Servicio getServicio() {
         return servicio;
     }
+    private static Stage primaryStage;
 
     public static FXMLLoader setRoot(String fxml) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));

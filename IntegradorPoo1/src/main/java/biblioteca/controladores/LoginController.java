@@ -1,5 +1,6 @@
 package biblioteca.controladores;
 
+import biblioteca.controladores.VistaMiembroController;
 import biblioteca.modelo.Usuario;
 import biblioteca.modelo.EstadoUsuario;
 import biblioteca.servicios.UsuarioServicio;
@@ -48,13 +49,18 @@ public class LoginController {
 
                 if ("BIBLIOTECARIO".equalsIgnoreCase(usuario.getRol())) {
                     loader = new FXMLLoader(getClass().getResource("/biblioteca/principal.fxml"));
+                    Parent root = loader.load();  // Cargamos vista
+                    stage.setScene(new Scene(root));
+                    stage.show();
                 } else {
                     loader = new FXMLLoader(getClass().getResource("/biblioteca/vistaMiembro.fxml"));
-                }
-
-                Parent root = loader.load();
-                stage.setScene(new Scene(root));
-                stage.show();
+                    Parent root = loader.load();  // Cargamos vista
+                    // Solo aquí hacemos el cast
+                    VistaMiembroController controller = loader.getController();
+                    controller.setUsuario(usuario);
+                    stage.setScene(new Scene(root));
+                    stage.show();
+}
             } catch (Exception e) {
                 e.printStackTrace();
                 mensajeError.setText("Error al cargar la vista.");
