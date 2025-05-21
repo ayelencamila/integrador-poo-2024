@@ -21,5 +21,9 @@
     <Label text="Idioma:" layoutX="20" layoutY="220"/>
     <TextField fx:id="txtIdioma" layoutX="100" layoutY="220" prefWidth="200"/>
 
+    <Label text="Precio Estimado:" layoutX="20" layoutY="260"/>
+    <TextField fx:id="txtPrecioEstimado" layoutX="150" layoutY="260" prefWidth="150"/>
+
+
     <Button text="Guardar" layoutX="150" layoutY="300" onAction="#guardarLibro"/>
 </AnchorPane>

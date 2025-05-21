@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * Representa un libro en la biblioteca.
- * Un libro contiene información básica como título, autor, categoría, ISBN, editorial e idioma.
+ * Un libro contiene información básica como título, autor, categoría, ISBN,
+ * editorial e idioma.
  * Además, puede tener múltiples copias asociadas.
  */
 @Entity
@@ -56,110 +57,92 @@ public class Libro implements Serializable {
     private List<CopiaLibro> copias;
 
     /**
+     * Precio estimado del libro para cálculo de multas.
+     */
+    private double precioEstimado;
+
+    /**
      * Constructor por defecto.
      */
-    public Libro() {}
+    public Libro() {
+    }
 
     // Getters y setters
 
-    /**
-     * Obtiene el identificador único del libro.
-     * @return el identificador del libro.
-     */
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
-    /**
-     * Establece el identificador único del libro.
-     * @param id el identificador del libro.
-     */
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    /**
-     * Obtiene el título del libro.
-     * @return el título del libro.
-     */
-    public String getTitulo() { return titulo; }
+    public String getTitulo() {
+        return titulo;
+    }
 
-    /**
-     * Establece el título del libro.
-     * @param titulo el título del libro.
-     */
-    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-    /**
-     * Obtiene el autor del libro.
-     * @return el autor del libro.
-     */
-    public String getAutor() { return autor; }
+    public String getAutor() {
+        return autor;
+    }
 
-    /**
-     * Establece el autor del libro.
-     * @param autor el autor del libro.
-     */
-    public void setAutor(String autor) { this.autor = autor; }
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
 
-    /**
-     * Obtiene la categoría del libro.
-     * @return la categoría del libro.
-     */
-    public String getCategoria() { return categoria; }
+    public String getCategoria() {
+        return categoria;
+    }
 
-    /**
-     * Establece la categoría del libro.
-     * @param categoria la categoría del libro.
-     */
-    public void setCategoria(String categoria) { this.categoria = categoria; }
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
-    /**
-     * Obtiene el código ISBN del libro.
-     * @return el código ISBN del libro.
-     */
-    public String getIsbn() { return isbn; }
+    public String getIsbn() {
+        return isbn;
+    }
 
-    /**
-     * Establece el código ISBN del libro.
-     * @param isbn el código ISBN del libro.
-     */
-    public void setIsbn(String isbn) { this.isbn = isbn; }
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
-    /**
-     * Obtiene la editorial del libro.
-     * @return la editorial del libro.
-     */
-    public String getEditorial() { return editorial; }
+    public String getEditorial() {
+        return editorial;
+    }
 
-    /**
-     * Establece la editorial del libro.
-     * @param editorial la editorial del libro.
-     */
-    public void setEditorial(String editorial) { this.editorial = editorial; }
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
+    }
 
-    /**
-     * Obtiene el idioma del libro.
-     * @return el idioma del libro.
-     */
-    public String getIdioma() { return idioma; }
+    public String getIdioma() {
+        return idioma;
+    }
 
-    /**
-     * Establece el idioma del libro.
-     * @param idioma el idioma del libro.
-     */
-    public void setIdioma(String idioma) { this.idioma = idioma; }
+    public void setIdioma(String idioma) {
+        this.idioma = idioma;
+    }
 
-    /**
-     * Obtiene la lista de copias asociadas al libro.
-     * @return la lista de copias del libro.
-     */
-    public List<CopiaLibro> getCopias() { return copias; }
+    public List<CopiaLibro> getCopias() {
+        return copias;
+    }
 
-    /**
-     * Establece la lista de copias asociadas al libro.
-     * @param copias la lista de copias del libro.
-     */
-    public void setCopias(List<CopiaLibro> copias) { this.copias = copias; }
+    public void setCopias(List<CopiaLibro> copias) {
+        this.copias = copias;
+    }
+
+    public double getPrecioEstimado() {
+        return precioEstimado;
+    }
+
+    public void setPrecioEstimado(double precioEstimado) {
+        this.precioEstimado = precioEstimado;
+    }
+
     @Override
     public String toString() {
         return titulo + " - " + autor;
     }
-
 }
