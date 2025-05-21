@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="biblioteca.controladores.QuienTieneCopiaController"
+      spacing="15" alignment="CENTER" prefWidth="500" prefHeight="300">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="¿Quién tiene esta copia?" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <Label text="ID de copia:"/>
+        <TextField fx:id="campoIdCopia" promptText="Ingrese el ID"/>
+        <Button text="Buscar" onAction="#buscarPrestamo"/>
+    </HBox>
+
+    <Label fx:id="mensaje" style="-fx-text-fill: red;"/>
+
+    <TableView fx:id="tablaResultado" prefHeight="200" visible="false">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Miembro"/>
+            <TableColumn fx:id="colFecha" text="Fecha de préstamo"/>
+        </columns>
+    </TableView>
+</VBox>

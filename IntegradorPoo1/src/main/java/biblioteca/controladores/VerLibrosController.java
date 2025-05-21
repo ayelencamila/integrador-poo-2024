@@ -16,7 +16,8 @@ import java.util.List;
 
 /**
  * Controlador para la vista de visualización de libros.
- * Permite al usuario ver, buscar, modificar y eliminar libros registrados en el sistema.
+ * Permite al usuario ver, buscar, modificar y eliminar libros registrados en el
+ * sistema.
  */
 public class VerLibrosController {
 
@@ -80,7 +81,8 @@ public class VerLibrosController {
     private ObservableList<Libro> datos;
 
     /**
-     * Inicializa la vista configurando las columnas de la tabla y cargando los libros registrados en el sistema.
+     * Inicializa la vista configurando las columnas de la tabla y cargando los
+     * libros registrados en el sistema.
      */
     @FXML
     public void initialize() {
@@ -91,6 +93,8 @@ public class VerLibrosController {
         colIsbn.setCellValueFactory(new PropertyValueFactory<Libro, String>("isbn"));
         colEditorial.setCellValueFactory(new PropertyValueFactory<Libro, String>("editorial"));
         colIdioma.setCellValueFactory(new PropertyValueFactory<Libro, String>("idioma"));
+        colPrecio.setCellValueFactory(
+                data -> new javafx.beans.property.SimpleDoubleProperty(data.getValue().getPrecioEstimado()).asObject());
 
         List<Libro> libros = App.getServicio().getRepositorio().buscarTodos(Libro.class);
         datos = FXCollections.observableArrayList(libros);
@@ -106,7 +110,8 @@ public class VerLibrosController {
         Libro libroSeleccionado = tablaLibros.getSelectionModel().getSelectedItem();
 
         if (libroSeleccionado != null) {
-            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar el libro seleccionado?", ButtonType.YES, ButtonType.NO);
+            Alert confirmacion = new Alert(Alert.AlertType.CONFIRMATION, "¿Eliminar el libro seleccionado?",
+                    ButtonType.YES, ButtonType.NO);
             confirmacion.setTitle("Confirmar eliminación");
             confirmacion.setHeaderText(null);
 
@@ -168,7 +173,8 @@ public class VerLibrosController {
     }
 
     /**
-     * Filtra los libros en la tabla según el texto ingresado en el campo de búsqueda.
+     * Filtra los libros en la tabla según el texto ingresado en el campo de
+     * búsqueda.
      * Si el campo está vacío, restaura la lista completa.
      */
     @FXML
@@ -184,8 +190,8 @@ public class VerLibrosController {
 
         for (Libro libro : datos) {
             if ((libro.getTitulo() != null && libro.getTitulo().toLowerCase().contains(texto)) ||
-                (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
-                (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
+                    (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
+                    (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
                 filtrados.add(libro);
             }
         }
@@ -201,4 +207,11 @@ public class VerLibrosController {
         campoBusqueda.clear();
         tablaLibros.setItems(datos);
     }
+
+    /**
+     * Columna que muestra el precio estimado del libro.
+     */
+    @FXML
+    private TableColumn<Libro, Double> colPrecio;
+
 }

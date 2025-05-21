@@ -28,6 +28,7 @@
         <Button text="Agregar Libro" onAction="#agregarLibro" prefWidth="200"/>
         <Button text="Ver Libros" onAction="#verLibros" prefWidth="200"/>
         <Button text="Ver Copias" onAction="#verCopias" prefWidth="200"/>
+        <Button text="¿Quién tiene esta copia?" onAction="#abrirVistaQuienTieneCopia" prefWidth="200"/>
     </VBox>
 
     <!-- Sección Gestión de Préstamos -->

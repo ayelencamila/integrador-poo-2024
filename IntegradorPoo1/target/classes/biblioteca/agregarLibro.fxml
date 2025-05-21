@@ -2,24 +2,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.AgregarLibroController" prefWidth="400" prefHeight="400">
-    <Label text="Título:" layoutX="20" layoutY="20"/>
-    <TextField fx:id="txtTitulo" layoutX="100" layoutY="20" prefWidth="200"/>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.AgregarLibroController"
+            prefWidth="420" prefHeight="450">
 
-    <Label text="Autor:" layoutX="20" layoutY="60"/>
-    <TextField fx:id="txtAutor" layoutX="100" layoutY="60" prefWidth="200"/>
+    <Label text="Título:" layoutX="30" layoutY="30"/>
+    <TextField fx:id="txtTitulo" layoutX="150" layoutY="30" prefWidth="220"/>
 
-    <Label text="Categoría:" layoutX="20" layoutY="100"/>
-    <TextField fx:id="txtCategoria" layoutX="100" layoutY="100" prefWidth="200"/>
+    <Label text="Autor:" layoutX="30" layoutY="70"/>
+    <TextField fx:id="txtAutor" layoutX="150" layoutY="70" prefWidth="220"/>
 
-    <Label text="ISBN:" layoutX="20" layoutY="140"/>
-    <TextField fx:id="txtIsbn" layoutX="100" layoutY="140" prefWidth="200"/>
+    <Label text="Categoría:" layoutX="30" layoutY="110"/>
+    <TextField fx:id="txtCategoria" layoutX="150" layoutY="110" prefWidth="220"/>
 
-    <Label text="Editorial:" layoutX="20" layoutY="180"/>
-    <TextField fx:id="txtEditorial" layoutX="100" layoutY="180" prefWidth="200"/>
+    <Label text="ISBN:" layoutX="30" layoutY="150"/>
+    <TextField fx:id="txtIsbn" layoutX="150" layoutY="150" prefWidth="220"/>
 
-    <Label text="Idioma:" layoutX="20" layoutY="220"/>
-    <TextField fx:id="txtIdioma" layoutX="100" layoutY="220" prefWidth="200"/>
+    <Label text="Editorial:" layoutX="30" layoutY="190"/>
+    <TextField fx:id="txtEditorial" layoutX="150" layoutY="190" prefWidth="220"/>
 
-    <Button text="Guardar" layoutX="150" layoutY="300" onAction="#guardarLibro"/>
+    <Label text="Idioma:" layoutX="30" layoutY="230"/>
+    <TextField fx:id="txtIdioma" layoutX="150" layoutY="230" prefWidth="220"/>
+
+    <Label text="Precio estimado:" layoutX="30" layoutY="270"/>
+    <TextField fx:id="txtPrecioEstimado" layoutX="150" layoutY="270" prefWidth="220"/>
+
+    <Button text="Guardar" layoutX="170" layoutY="340" onAction="#guardarLibro"/>
 </AnchorPane>

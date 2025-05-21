@@ -39,6 +39,7 @@
                 <TableColumn fx:id="colIsbn" text="ISBN" prefWidth="120"/>
                 <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="100"/>
                 <TableColumn fx:id="colIdioma" text="Idioma" prefWidth="80"/>
+                <TableColumn fx:id="colPrecio" text="Precio estimado" prefWidth="120"/>
             </columns>
         </TableView>
     </center>

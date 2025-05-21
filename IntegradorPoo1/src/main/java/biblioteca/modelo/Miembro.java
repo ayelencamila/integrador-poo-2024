@@ -5,7 +5,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Representa un miembro de la biblioteca que extiende la funcionalidad de un usuario.
+ * Representa un miembro de la biblioteca que extiende la funcionalidad de un
+ * usuario.
  * Un miembro puede realizar préstamos y devoluciones de libros.
  */
 @Entity
@@ -17,7 +18,8 @@ public class Miembro extends Usuario {
     @OneToMany(mappedBy = "miembro", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Prestamo> librosPrestados;
 
-    public Miembro() {}
+    public Miembro() {
+    }
 
     /**
      * Realiza el préstamo de una copia de un libro.
@@ -31,8 +33,8 @@ public class Miembro extends Usuario {
         }
 
         long prestamosActivos = librosPrestados.stream()
-            .filter(p -> p.getFechaDevolucion() == null)
-            .count();
+                .filter(p -> p.getFechaDevolucion() == null)
+                .count();
 
         if (prestamosActivos >= 5) {
             return false;
@@ -62,9 +64,9 @@ public class Miembro extends Usuario {
      */
     public boolean devolverLibro(CopiaLibro copia) {
         Prestamo prestamo = librosPrestados.stream()
-            .filter(p -> p.getCopiaLibro().equals(copia) && p.getFechaDevolucion() == null)
-            .findFirst()
-            .orElse(null);
+                .filter(p -> p.getCopiaLibro().equals(copia) && p.getFechaDevolucion() == null)
+                .findFirst()
+                .orElse(null);
 
         if (prestamo == null) {
             return false;
@@ -77,9 +79,10 @@ public class Miembro extends Usuario {
 
         if (hoy.isAfter(prestamo.getFechaVencimiento())) {
             int diasAtraso = (int) java.time.temporal.ChronoUnit.DAYS.between(
-                prestamo.getFechaVencimiento(), hoy);
+                    prestamo.getFechaVencimiento(), hoy);
 
-            double monto = diasAtraso * 100.0;
+            double precioEstimado = copia.getLibro().getPrecioEstimado();
+            double monto = diasAtraso * precioEstimado;
 
             Multa multa = new Multa();
             multa.setDiasAtraso(diasAtraso);

@@ -74,6 +74,11 @@ public class PrincipalController {
         abrirVista("prestamosPorMiembro.fxml", "Préstamos por Miembro");
     }
 
+    @FXML
+    private void abrirVistaQuienTieneCopia() {
+        abrirVista("quienTieneCopia.fxml", "¿Quién tiene esta copia?");
+    }
+
     /**
      * Método genérico para abrir una vista.
      * Carga un archivo FXML y lo muestra en una nueva ventana.

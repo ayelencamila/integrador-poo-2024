@@ -77,22 +77,22 @@ public class Repositorio {
         consulta.orderBy(cb.asc(raiz.get(orden)));
         return em.createQuery(consulta).getResultList();
     }
+
     public List<CopiaLibro> buscarCopiasDisponiblesConLibros() {
-    return em.createQuery(
-        "SELECT c FROM CopiaLibro c " +
-        "JOIN FETCH c.libro l " +
-        "WHERE c.estado = biblioteca.modelo.EstadoCopia.DISPONIBLE " +
-        "AND c.esReferencia = false",
-        CopiaLibro.class
-    ).getResultList();
+        return em.createQuery(
+                "SELECT c FROM CopiaLibro c " +
+                        "JOIN FETCH c.libro l " +
+                        "WHERE c.estado = biblioteca.modelo.EstadoCopia.DISPONIBLE " +
+                        "AND c.esReferencia = false",
+                CopiaLibro.class).getResultList();
     }
-    
+
     public List<CopiaLibro> buscarCopiasPorLibro(Libro libro) {
-    return em.createQuery(
-        "SELECT c FROM CopiaLibro c WHERE c.libro = :libro", CopiaLibro.class)
-        .setParameter("libro", libro)
-        .getResultList();
-}
+        return em.createQuery(
+                "SELECT c FROM CopiaLibro c WHERE c.libro = :libro", CopiaLibro.class)
+                .setParameter("libro", libro)
+                .getResultList();
+    }
 
     public List<Libro> obtenerTodosLosLibros() {
         TypedQuery<Libro> query = em.createQuery("SELECT l FROM Libro l", Libro.class);

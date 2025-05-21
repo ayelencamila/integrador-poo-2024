@@ -14,12 +14,20 @@ import javafx.scene.control.TextField;
  */
 public class AgregarLibroController {
 
-    @FXML private TextField txtTitulo;
-    @FXML private TextField txtAutor;
-    @FXML private TextField txtCategoria;
-    @FXML private TextField txtIsbn;
-    @FXML private TextField txtEditorial;
-    @FXML private TextField txtIdioma;
+    @FXML
+    private TextField txtTitulo;
+    @FXML
+    private TextField txtAutor;
+    @FXML
+    private TextField txtCategoria;
+    @FXML
+    private TextField txtIsbn;
+    @FXML
+    private TextField txtEditorial;
+    @FXML
+    private TextField txtIdioma;
+    @FXML
+    private TextField txtPrecioEstimado;
 
     /**
      * Método que se ejecuta al presionar el botón de guardar.
@@ -33,7 +41,19 @@ public class AgregarLibroController {
             String isbn = txtIsbn.getText().trim();
 
             if (titulo.isEmpty() || autor.isEmpty() || isbn.isEmpty()) {
-                mostrarAlerta(Alert.AlertType.WARNING, "Campos obligatorios", "El título, autor e ISBN no pueden estar vacíos.");
+                mostrarAlerta(Alert.AlertType.WARNING, "Campos obligatorios",
+                        "El título, autor e ISBN no pueden estar vacíos.");
+                return;
+            }
+
+            // Validar y convertir precio
+            String precioTexto = txtPrecioEstimado.getText().trim();
+            double precio = 0;
+            try {
+                precio = Double.parseDouble(precioTexto);
+            } catch (NumberFormatException e) {
+                mostrarAlerta(Alert.AlertType.ERROR, "Formato inválido",
+                        "El precio estimado debe ser un número válido.");
                 return;
             }
 
@@ -62,6 +82,7 @@ public class AgregarLibroController {
             libro.setIsbn(isbn);
             libro.setEditorial(txtEditorial.getText().trim());
             libro.setIdioma(txtIdioma.getText().trim());
+            libro.setPrecioEstimado(precio);
 
             servicio.agregarLibro(libro);
 
@@ -74,10 +95,6 @@ public class AgregarLibroController {
 
     /**
      * Muestra una alerta al usuario con el tipo, título y mensaje especificados.
-     *
-     * @param tipo    Tipo de alerta (INFORMATION, WARNING, ERROR, etc.)
-     * @param titulo  Título de la alerta
-     * @param mensaje Mensaje a mostrar en la alerta
      */
     private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
         Alert alerta = new Alert(tipo);
