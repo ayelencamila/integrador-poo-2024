@@ -33,10 +33,12 @@
     <!-- Sección Gestión de Préstamos -->
     <Label text="Gestión de Préstamos" style="-fx-font-weight: bold;" />
     <VBox spacing="8">
-        <Button text="Registrar Préstamo" onAction="#abrirRegistroPrestamo" />
-        <Button text="Ver Préstamos" onAction="#verPrestamos" prefWidth="200"/>
-        <Button text="Libros más prestados" onAction="#verMasPrestados" prefWidth="200"/>
+    <Button text="Registrar Préstamo" onAction="#abrirRegistroPrestamo" />
+    <Button text="Ver Préstamos" onAction="#verPrestamos" prefWidth="200"/>
+    <Button text="Libros más prestados" onAction="#verMasPrestados" prefWidth="200"/>
+    <Button text="Libros por Miembro" onAction="#abrirPrestamosPorMiembro" prefWidth="200"/>
     </VBox>
+
 
     <!-- Sección Multas -->
     <Label text="Multas" style="-fx-font-weight: bold;" />

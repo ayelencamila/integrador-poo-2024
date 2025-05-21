@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.PrestamosPorMiembroController">
+    <children>
+        <VBox spacing="10.0" alignment="TOP_CENTER" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <Label text="Préstamos activos por miembro" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="ID del miembro:"/>
+                <TextField fx:id="campoIdMiembro" promptText="Ingrese el ID"/>
+                <Button fx:id="btnBuscar" text="Buscar" onAction="#buscarPrestamos"/>
+            </HBox>
+
+            <Label fx:id="mensajeError" textFill="red"/>
+
+            <TableView fx:id="tablaPrestamos" prefHeight="300" prefWidth="600">
+                <columns>
+                    <TableColumn fx:id="colIdPrestamo" text="ID Préstamo" prefWidth="100"/>
+                    <TableColumn fx:id="colTituloLibro" text="Título del Libro" prefWidth="200"/>
+                    <TableColumn fx:id="colFechaInicio" text="Inicio" prefWidth="150"/>
+                    <TableColumn fx:id="colFechaVencimiento" text="Vencimiento" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>
