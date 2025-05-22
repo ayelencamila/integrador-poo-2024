@@ -103,10 +103,16 @@ public class Servicio {
         LocalDate hoy = LocalDate.now();
 
         for (Prestamo p : prestamos) {
-            if (p.getFechaDevolucion() == null && p.getFechaVencimiento().isBefore(hoy)) {
-                if (p.getMulta() == null) {
-                    int diasAtraso = (int) java.time.temporal.ChronoUnit.DAYS.between(p.getFechaVencimiento(), hoy);
-                    double monto = diasAtraso * 100;
+            if (p.getFechaDevolucion() == null && p.getMulta() == null) {
+                int diasAtraso = (int) java.time.temporal.ChronoUnit.DAYS.between(p.getFechaVencimiento(), hoy);
+                if (diasAtraso > 0) {
+                    Double precioEstimado = p.getCopiaLibro().getLibro().getPrecioEstimado();
+                    if (precioEstimado == null) {
+                        precioEstimado = 100.0;
+                    }   
+
+                    
+                    double monto = diasAtraso * precioEstimado;
 
                     Multa multa = new Multa();
                     multa.setDiasAtraso(diasAtraso);
@@ -114,8 +120,9 @@ public class Servicio {
                     multa.setEstado(EstadoMulta.PENDIENTE);
                     multa.setPrestamo(p);
 
+                    p.setMulta(multa);
                     repo.iniciarTransaccion();
-                    repo.insertar(multa);
+                    repo.persistir(multa);
                     repo.confirmarTransaccion();
                 }
             }

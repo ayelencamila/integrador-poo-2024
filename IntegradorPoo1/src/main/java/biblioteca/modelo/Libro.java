@@ -59,7 +59,8 @@ public class Libro implements Serializable {
     /**
      * Precio estimado del libro para cálculo de multas.
      */
-    private double precioEstimado;
+    private Double precioEstimado;
+    
 
     /**
      * Constructor por defecto.

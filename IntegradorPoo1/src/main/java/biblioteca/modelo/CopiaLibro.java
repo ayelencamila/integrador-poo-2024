@@ -1,6 +1,8 @@
 package biblioteca.modelo;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,7 +54,8 @@ public class CopiaLibro {
      * Préstamo asociado a esta copia, si está prestada.
      */
     @OneToMany(mappedBy = "copiaLibro", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Prestamo> prestamos;
+    private List<Prestamo> prestamos = new ArrayList<>();
+
 
     /**
      * Constructor por defecto.

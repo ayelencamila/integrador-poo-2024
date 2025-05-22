@@ -30,6 +30,9 @@ public class Repositorio {
     public void iniciarTransaccion() {
         em.getTransaction().begin();
     }
+    public void persistir(Object entidad) {
+    em.persist(entidad);
+}
 
     public void confirmarTransaccion() {
         em.getTransaction().commit();
