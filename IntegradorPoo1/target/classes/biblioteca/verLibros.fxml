@@ -7,35 +7,23 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.VerLibrosController"
-            prefWidth="900" prefHeight="540">
+            prefWidth="800" prefHeight="500">
 
     <!-- Encabezado -->
     <top>
-        <VBox spacing="16" alignment="CENTER" style="-fx-background-color: #2c3e50;">
-        <padding>
-            <Insets top="20" right="20" bottom="20" left="20"/>
-        </padding>
-            <Label text="Lista de Libros" style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;">
+        <VBox spacing="10" alignment="CENTER">
+            <Label text="Lista de Libros">
                 <font>
-                    <Font size="26"/>
+                    <Font size="18"/>
                 </font>
-                <style>
-                    -fx-font-weight: bold;
-                    -fx-text-fill: #22304a;
-                    -fx-padding: 10 0 0 0;
-                </style>
             </Label>
 
             <!-- Búsqueda -->
             <HBox spacing="10" alignment="CENTER">
-                <Label text="Buscar por:"/>
-                <ChoiceBox fx:id="tipoBusqueda">
-                </ChoiceBox>
-                <TextField fx:id="campoBusqueda" promptText="Ej. El Principito" prefWidth="220"/>
-                <Button text="Buscar" onAction="#buscarLibro"
-                    style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
-                <Button text="Restablecer" onAction="#restablecerBusqueda"
-                    style="-fx-background-color:rgb(126, 184, 223); -fx-text-fill: white;"/>
+                <Label text="Buscar título:"/>
+                <TextField fx:id="campoBusqueda" promptText="Ej. El Principito" prefWidth="200"/>
+                <Button text="Buscar" onAction="#buscarLibro"/>
+                <Button text="Restablecer" onAction="#restablecerBusqueda"/>
             </HBox>
         </VBox>
     </top>
@@ -45,12 +33,12 @@
         <TableView fx:id="tablaLibros" prefHeight="350">
             <columns>
                 <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colTitulo" text="Título" prefWidth="180"/>
-                <TableColumn fx:id="colAutor" text="Autor" prefWidth="140"/>
-                <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="120"/>
+                <TableColumn fx:id="colTitulo" text="Título" prefWidth="150"/>
+                <TableColumn fx:id="colAutor" text="Autor" prefWidth="120"/>
+                <TableColumn fx:id="colCategoria" text="Categoría" prefWidth="100"/>
                 <TableColumn fx:id="colIsbn" text="ISBN" prefWidth="120"/>
-                <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="120"/>
-                <TableColumn fx:id="colIdioma" text="Idioma" prefWidth="100"/>
+                <TableColumn fx:id="colEditorial" text="Editorial" prefWidth="100"/>
+                <TableColumn fx:id="colIdioma" text="Idioma" prefWidth="80"/>
                 <TableColumn fx:id="colPrecioEstimado" text="Precio Estimado" prefWidth="120"/>
             </columns>
         </TableView>
@@ -58,17 +46,14 @@
 
     <!-- Botones de acción -->
     <bottom>
-        <HBox spacing="24" alignment="CENTER">
-            <padding>
-                <Insets top="18" right="18" bottom="18" left="18"/>
-            </padding>
-            <Button text="Agregar Libro" onAction="#agregarLibro"
-                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
-            <Button text="Modificar Libro" onAction="#modificarLibro"
-                style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
-            <Button fx:id="btnEliminar" text="Eliminar libro" onAction="#eliminarLibro"
-                style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;"/>
-        </HBox>
+        <HBox spacing="20" alignment="CENTER">
+          <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+         </padding>
+        <Button text="Agregar Libro" onAction="#agregarLibro"/>
+        <Button text="Modificar Libro" onAction="#modificarLibro"/>
+        <Button fx:id="btnEliminar" text="Eliminar libro" onAction="#eliminarLibro"/>
+       </HBox>
     </bottom>
 
     <padding>

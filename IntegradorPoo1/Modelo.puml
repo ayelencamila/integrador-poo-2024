@@ -1,0 +1,91 @@
+@startuml
+' Enumeraciones
+enum EstadoUsuario {
+    ALTA
+    BAJA
+}
+
+enum EstadoCopia {
+    DISPONIBLE
+    PRESTADA
+    PERDIDA
+}
+
+enum TipoCopia {
+    TAPA_DURA
+    RUSTICA
+    AUDIO_LIBRO
+    EBOOK
+    REFERENCIA
+}
+
+enum EstadoMulta {
+    PENDIENTE
+    PAGADA
+}
+
+' Clases
+class Usuario {
+    - id: Long
+    - nombre: String
+    - apellido: String
+    - clave: String
+    - rol: String
+    - estado: EstadoUsuario
+    + validarClave(clave: String): boolean
+}
+
+class Miembro {
+    + prestarLibro(copia: CopiaLibro): boolean
+}
+
+class Prestamo {
+    - id: Long
+    - fechaInicio: LocalDate
+    - fechaVencimiento: LocalDate
+    - fechaDevolucion: LocalDate
+}
+
+class Multa {
+    - id: Long
+    - diasAtraso: int
+    - monto: double
+    - estado: EstadoMulta
+}
+
+class Libro {
+    - id: Long
+    - titulo: String
+    - autor: String
+    - categoria: String
+    - isbn: String
+    - editorial: String
+    - idioma: String
+    - precioEstimado: Double
+}
+
+class CopiaLibro {
+    - id: Long
+    - tipo: TipoCopia
+    - estado: EstadoCopia
+    - esReferencia: boolean
+}
+
+class Rack {
+    - id: Long
+    - descripcion: String
+}
+
+' Relaciones
+Usuario <|-- Miembro
+Miembro "1" -- "0..*" Prestamo : realiza
+Prestamo "0..1" --> "1" Multa : puede generar
+Prestamo "1" --> "1" CopiaLibro : copia
+CopiaLibro "1" --> "1" Libro : pertenece a
+CopiaLibro "1" --> "1" Rack : ubicado en
+Usuario --> EstadoUsuario : usa
+CopiaLibro --> EstadoCopia : usa
+CopiaLibro --> TipoCopia : usa
+Multa --> EstadoMulta : usa
+
+@enduml

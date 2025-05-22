@@ -2,52 +2,25 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox spacing="0" xmlns="http://javafx.com/javafx"
+<VBox alignment="CENTER" spacing="15.0" xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="biblioteca.controladores.VistaMiembroController"
-      style="-fx-background-color: #f4f6f8; -fx-border-color: #cccccc; -fx-border-radius: 8;">
-    
-    <!-- Cabecera azul -->
-    <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #2c3e50;">
-        <padding>
-            <Insets top="20" right="0" bottom="20" left="0"/>
-        </padding>
-        <Label fx:id="labelBienvenida" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
-    </VBox>
-
-    <!-- Buscador -->
-    <HBox spacing="10" alignment="CENTER" style="-fx-background-color: #f4f6f8;">
-        <padding>
-            <Insets top="18" right="18" bottom="18" left="18"/>
-        </padding>
+      style="-fx-padding: 30; -fx-border-color: #cccccc; -fx-border-radius: 8;">
+    <Label fx:id="labelBienvenida" style="-fx-font-size: 18px;"/>
+    <HBox spacing="10">
         <TextField fx:id="campoBusqueda" promptText="Buscar libro..."/>
-        <ChoiceBox fx:id="tipoBusqueda"/>
-        <Button text="Buscar" onAction="#handleBuscar"
-            style="-fx-background-color: linear-gradient(to right, #3498db, #2980b9); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
-        <Button text="Restablecer" onAction="#handleRestablecer"
-            style="-fx-background-color: linear-gradient(to right, #95a5a6, #7f8c8d); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+        <ChoiceBox fx:id="tipoBusqueda" />
+        <Button text="Buscar" onAction="#handleBuscar"/>
+        <Button text="Restablecer" onAction="#handleRestablecer"/>
     </HBox>
-
-    <!-- Tabla de libros -->
-    <TableView fx:id="tablaLibros" prefHeight="200" prefWidth="400"
-               style="-fx-background-radius: 8; -fx-background-color: white; -fx-border-color: #d1d1d1; -fx-border-radius: 8;">
+    <TableView fx:id="tablaLibros" prefHeight="200" prefWidth="400">
         <columns>
             <TableColumn text="Título" fx:id="colTitulo"/>
             <TableColumn text="Autor" fx:id="colAutor"/>
             <TableColumn text="Categoría" fx:id="colCategoria"/>
         </columns>
     </TableView>
-
     <Label fx:id="mensajeError" textFill="red"/>
-
-    <HBox alignment="CENTER">
-        <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="150"
-                style="-fx-background-color: linear-gradient(to right, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
-    </HBox>
-    
-    <padding>
-        <Insets top="0" right="30" bottom="30" left="30"/>
-    </padding>
+    <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="150"/>
 </VBox>

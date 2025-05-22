@@ -5,122 +5,59 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.HBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="biblioteca.controladores.PrincipalController"
       spacing="30" alignment="TOP_CENTER" prefWidth="700" prefHeight="700"
       style="-fx-background-color: linear-gradient(to bottom, #e9ecef, #f8f9fa);">
-    
+
     <padding>
-        <Insets top="40" right="40" bottom="40" left="40"/>
+        <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
     <!-- Título principal -->
-    <Label text="Sistema de Gestión de Biblioteca" alignment="CENTER">
+    <Label text="Sistema de Gestión de Biblioteca">
         <font>
-            <Font size="32" />
+            <Font size="20" />
         </font>
-        <style>
-            -fx-font-weight: bold;
-            -fx-text-fill: #22304a;
-            -fx-effect: dropshadow(gaussian, #b0b0b0, 2, 0.2, 0, 2);
-            -fx-padding: 0 0 10 0;
-        </style>
     </Label>
 
     <!-- Sección Gestión de Libros -->
-    <VBox spacing="14" style="-fx-background-color: #ffffff; -fx-border-color: #bfc9d1; -fx-border-radius: 14; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, #b0b0b0, 6, 0.1, 0, 2);">
-        <padding>
-            <Insets top="18" right="18" bottom="18" left="18"/>
-        </padding>
-        <Label text="Gestión de Libros" alignment="CENTER">
-            <font>
-                <Font size="18"/>
-            </font>
-            <style>
-                -fx-font-weight: bold;
-                -fx-text-fill: #2d5c88;
-                -fx-padding: 0 0 8 0;
-            </style>
-        </Label>
-        <HBox spacing="18" alignment="CENTER">
-            <Button text="Ver Libros" onAction="#verLibros" prefWidth="160"/>
-            <Button text="Ver Copias" onAction="#verCopias" prefWidth="160"/>
-            <Button text="Ver Racks" onAction="#verRacks" prefWidth="160"/>
-        </HBox>
+    <Label text="Gestión de Libros" style="-fx-font-weight: bold;" />
+    <VBox spacing="8">
+        <Button text="Ver Libros" onAction="#verLibros" prefWidth="200"/>
+        <Button text="Ver Copias" onAction="#verCopias" prefWidth="200"/>
+        <Button text="Ver Racks" onAction="#verRacks" prefWidth="200"/>
     </VBox>
 
     <!-- Sección Gestión de Préstamos -->
-    <VBox spacing="14" style="-fx-background-color: #ffffff; -fx-border-color: #bfc9d1; -fx-border-radius: 14; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, #b0b0b0, 6, 0.1, 0, 2);">
-        <padding>
-            <Insets top="18" right="18" bottom="18" left="18"/>
-        </padding>
-        <Label text="Gestión de Préstamos" alignment="CENTER">
-            <font>
-                <Font size="18"/>
-            </font>
-            <style>
-                -fx-font-weight: bold;
-                -fx-text-fill: #2d5c88;
-                -fx-padding: 0 0 8 0;
-            </style>
-        </Label>
-        <HBox spacing="18" alignment="CENTER">
-            <Button text="Registrar Préstamo" onAction="#abrirRegistroPrestamo" prefWidth="160"/>
-            <Button text="Ver Préstamos" onAction="#verPrestamos" prefWidth="160"/>
-            <Button text="Libros más prestados" onAction="#verMasPrestados" prefWidth="160"/>
-            <Button text="Libros por Miembro" onAction="#abrirPrestamosPorMiembro" prefWidth="160"/>
-        </HBox>
+    <Label text="Gestión de Préstamos" style="-fx-font-weight: bold;" />
+    <VBox spacing="8">
+    <Button text="Registrar Préstamo" onAction="#abrirRegistroPrestamo" />
+    <Button text="Ver Préstamos" onAction="#verPrestamos" prefWidth="200"/>
+    <Button text="Libros más prestados" onAction="#verMasPrestados" prefWidth="200"/>
+    <Button text="Libros por Miembro" onAction="#abrirPrestamosPorMiembro" prefWidth="200"/>
     </VBox>
 
+
     <!-- Sección Multas -->
-    <VBox spacing="14" style="-fx-background-color: #ffffff; -fx-border-color: #bfc9d1; -fx-border-radius: 14; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, #b0b0b0, 6, 0.1, 0, 2);">
-        <padding>
-            <Insets top="18" right="18" bottom="18" left="18"/>
-        </padding>
-        <Label text="Multas" alignment="CENTER">
-            <font>
-                <Font size="18"/>
-            </font>
-            <style>
-                -fx-font-weight: bold;
-                -fx-text-fill: #2d5c88;
-                -fx-padding: 0 0 8 0;
-            </style>
-        </Label>
-        <HBox alignment="CENTER">
-            <Button text="Ver Multas" onAction="#verMultas" prefWidth="160"/>
-        </HBox>
+    <Label text="Multas" style="-fx-font-weight: bold;" />
+    <VBox spacing="8">
+        <Button text="Ver Multas" onAction="#verMultas" prefWidth="200"/>
     </VBox>
 
     <!-- Sección Miembros -->
-    <VBox spacing="14" style="-fx-background-color: #ffffff; -fx-border-color: #bfc9d1; -fx-border-radius: 14; -fx-background-radius: 14; -fx-effect: dropshadow(gaussian, #b0b0b0, 6, 0.1, 0, 2);">
-        <padding>
-            <Insets top="18" right="18" bottom="18" left="18"/>
-        </padding>
-        <Label text="Gestión de Miembros" alignment="CENTER">
-            <font>
-                <Font size="18"/>
-            </font>
-            <style>
-                -fx-font-weight: bold;
-                -fx-text-fill: #2d5c88;
-                -fx-padding: 0 0 8 0;
-            </style>
-        </Label>
-        <HBox alignment="CENTER">
-            <Button text="Ver Miembros" onAction="#verMiembros" prefWidth="160"/>
-        </HBox>
+    <Label text="Gestión de Miembros" style="-fx-font-weight: bold;" />
+    <VBox spacing="8">
+    <Button text="Ver Miembros" onAction="#verMiembros" prefWidth="200"/>
     </VBox>
-
     <!-- Cierre de sesión -->
     <VBox alignment="CENTER">
-        <padding>
-            <Insets top="18" right="10" bottom="0" left="10"/>
-        </padding>
-        <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="220"
-                style="-fx-background-color: linear-gradient(to right, #e74c3c, #c0392b); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;"/>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <Button fx:id="botonCerrarSesion" text="Cerrar sesión" onAction="#cerrarSesion" prefWidth="200"/>
     </VBox>
+
 </VBox>

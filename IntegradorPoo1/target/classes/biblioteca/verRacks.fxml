@@ -7,48 +7,32 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="biblioteca.controladores.VerRacksController"
-            prefWidth="700" prefHeight="450"
-            style="-fx-background-color: #f9f9f9;">
+            prefWidth="600" prefHeight="400">
 
-    <!-- Encabezado -->
+    <!-- Título -->
     <top>
-        <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #2c3e50;">
-            <padding><Insets top="20" bottom="20"/></padding>
-            <Label text="Gestión de Racks"
-                   style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;" />
-        </VBox>
+        <Label text="Gestión de Racks" alignment="CENTER" style="-fx-font-size: 18px; -fx-padding: 15;"/>
     </top>
 
     <!-- Tabla de Racks -->
     <center>
-        <VBox spacing="10" alignment="CENTER">
-            <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
-            </padding>
-            <TableView fx:id="tablaRacks" prefHeight="300" prefWidth="650">
-                <columns>
-                    <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
-                    <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="500"/>
-                </columns>
-            </TableView>
-        </VBox>
+        <TableView fx:id="tablaRacks" prefHeight="300">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="100"/>
+                <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="400"/>
+            </columns>
+        </TableView>
     </center>
 
     <!-- Botones -->
     <bottom>
-        <HBox spacing="20" alignment="CENTER">
+        <HBox spacing="10" alignment="CENTER">
             <padding>
-                <Insets top="15" right="15" bottom="15" left="15"/>
+                <Insets top="10" bottom="15"/>
             </padding>
-            <Button text="Agregar Rack"
-                    onAction="#agregarRack"
-                    style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;" />
-            <Button text="Modificar Rack"
-                    onAction="#modificarRack"
-                    style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;" />
-            <Button text="Eliminar Rack"
-                    onAction="#eliminarRack"
-                    style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;" />
+            <Button text="Agregar Rack" onAction="#agregarRack"/>
+            <Button text="Modificar Rack" onAction="#modificarRack"/>
+            <Button text="Eliminar Rack" onAction="#eliminarRack"/>
         </HBox>
     </bottom>
 
