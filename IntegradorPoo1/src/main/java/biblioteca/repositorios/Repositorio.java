@@ -8,7 +8,6 @@ import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.SingularAttribute;
 
 import biblioteca.modelo.CopiaLibro;
-import biblioteca.modelo.EstadoCopia;
 import biblioteca.modelo.Libro;
 import javax.persistence.TypedQuery;
 
