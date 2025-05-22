@@ -13,29 +13,35 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Controlador para la ventana que muestra los préstamos activos de un miembro.
+ */
 public class PrestamosPorMiembroController {
 
     @FXML
-    private TextField campoIdMiembro;
+    private TextField campoIdMiembro; // Campo para ingresar el ID del miembro
     @FXML
-    private Button btnBuscar;
+    private Button btnBuscar;         // Botón para buscar los préstamos
     @FXML
-    private Label mensajeError;
+    private Label mensajeError;       // Label para mostrar mensajes de error
 
     @FXML
-    private TableView<Prestamo> tablaPrestamos;
+    private TableView<Prestamo> tablaPrestamos; // Tabla para mostrar los préstamos
     @FXML
-    private TableColumn<Prestamo, Long> colIdPrestamo;
+    private TableColumn<Prestamo, Long> colIdPrestamo; // Columna para el ID del préstamo
     @FXML
-    private TableColumn<Prestamo, String> colTituloLibro;
+    private TableColumn<Prestamo, String> colTituloLibro; // Columna para el título del libro
     @FXML
-    private TableColumn<Prestamo, String> colFechaInicio;
+    private TableColumn<Prestamo, String> colFechaInicio; // Columna para la fecha de inicio
     @FXML
-    private TableColumn<Prestamo, String> colFechaVencimiento;
+    private TableColumn<Prestamo, String> colFechaVencimiento; // Columna para la fecha de vencimiento
 
-    private final Servicio servicio = App.getServicio();
-    private final ObservableList<Prestamo> datos = FXCollections.observableArrayList();
+    private final Servicio servicio = App.getServicio(); // Servicio para acceder a la lógica de negocio
+    private final ObservableList<Prestamo> datos = FXCollections.observableArrayList(); // Lista observable para la tabla
 
+    /**
+     * Inicializa la tabla y sus columnas, y configura el formato de fechas.
+     */
     @FXML
     public void initialize() {
         colIdPrestamo.setCellValueFactory(
@@ -55,6 +61,10 @@ public class PrestamosPorMiembroController {
         tablaPrestamos.setItems(datos);
     }
 
+    /**
+     * Busca los préstamos activos del miembro cuyo ID se ingresa en el campo correspondiente.
+     * Valida el campo, muestra mensajes de error si corresponde y actualiza la tabla.
+     */
     @FXML
     private void buscarPrestamos() {
         mensajeError.setText("");

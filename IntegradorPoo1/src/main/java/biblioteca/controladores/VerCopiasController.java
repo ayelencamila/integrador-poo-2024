@@ -15,25 +15,32 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * Controlador para la ventana que permite visualizar, agregar, modificar y eliminar copias de libros.
+ */
 public class VerCopiasController {
 
     @FXML
-    private ComboBox<Libro> comboLibros;
+    private ComboBox<Libro> comboLibros; // ComboBox para seleccionar un libro
     @FXML
-    private TableView<CopiaLibro> tablaCopias;
+    private TableView<CopiaLibro> tablaCopias; // Tabla para mostrar las copias del libro seleccionado
     @FXML
-    private TableColumn<CopiaLibro, Long> colId;
+    private TableColumn<CopiaLibro, Long> colId; // Columna para el ID de la copia
     @FXML
-    private TableColumn<CopiaLibro, String> colTipo;
+    private TableColumn<CopiaLibro, String> colTipo; // Columna para el tipo de copia
     @FXML
-    private TableColumn<CopiaLibro, String> colEstado;
+    private TableColumn<CopiaLibro, String> colEstado; // Columna para el estado de la copia
     @FXML
-    private TableColumn<CopiaLibro, String> colRack;
+    private TableColumn<CopiaLibro, String> colRack; // Columna para el rack de la copia
     @FXML
-    private TableColumn<CopiaLibro, String> colPrestadoA;
+    private TableColumn<CopiaLibro, String> colPrestadoA; // Columna para el nombre del miembro que tiene la copia prestada
 
-    private ObservableList<CopiaLibro> datosCopias;
+    private ObservableList<CopiaLibro> datosCopias; // Lista observable para la tabla de copias
 
+    /**
+     * Inicializa la tabla y el ComboBox de libros.
+     * Configura las columnas y carga los libros disponibles.
+     */
     @FXML
     public void initialize() {
         colId.setCellValueFactory(
@@ -49,27 +56,31 @@ public class VerCopiasController {
                 cellData.getValue().getRack().getDescripcion()));
 
         colPrestadoA.setCellValueFactory(cellData -> {
-    CopiaLibro copia = cellData.getValue();
+            CopiaLibro copia = cellData.getValue();
 
-    Prestamo activo = copia.getPrestamos().stream()
-        .filter(p -> p.getFechaDevolucion() == null)
-        .findFirst()
-        .orElse(null);
+            Prestamo activo = copia.getPrestamos().stream()
+                .filter(p -> p.getFechaDevolucion() == null)
+                .findFirst()
+                .orElse(null);
 
-    if (activo != null) {
-        var miembro = activo.getMiembro();
-        return new javafx.beans.property.SimpleStringProperty(
-            miembro.getNombre() + " " + miembro.getApellido()
-        );
-    } else {
-        return new javafx.beans.property.SimpleStringProperty("—");
-    }
-});
+            if (activo != null) {
+                var miembro = activo.getMiembro();
+                return new javafx.beans.property.SimpleStringProperty(
+                    miembro.getNombre() + " " + miembro.getApellido()
+                );
+            } else {
+                return new javafx.beans.property.SimpleStringProperty("—");
+            }
+        });
 
         List<Libro> libros = App.getServicio().buscarTodosLibros();
         comboLibros.setItems(FXCollections.observableArrayList(libros));
     }
 
+    /**
+     * Carga las copias del libro seleccionado en la tabla.
+     * Muestra una alerta si no se selecciona ningún libro.
+     */
     @FXML
     private void cargarCopias() {
         Libro seleccionado = comboLibros.getSelectionModel().getSelectedItem();
@@ -82,6 +93,10 @@ public class VerCopiasController {
         }
     }
 
+    /**
+     * Abre la ventana para agregar una nueva copia al libro seleccionado.
+     * Muestra una alerta si no se selecciona ningún libro.
+     */
     @FXML
     private void agregarCopia() {
         Libro libroSeleccionado = comboLibros.getSelectionModel().getSelectedItem();
@@ -111,6 +126,10 @@ public class VerCopiasController {
         }
     }
 
+    /**
+     * Abre la ventana para modificar el estado de la copia seleccionada.
+     * Muestra una alerta si no se selecciona ninguna copia.
+     */
     @FXML
     private void modificarCopia() {
         CopiaLibro seleccionada = tablaCopias.getSelectionModel().getSelectedItem();
@@ -141,6 +160,10 @@ public class VerCopiasController {
         }
     }
 
+    /**
+     * Elimina la copia seleccionada si no está prestada.
+     * Solicita confirmación antes de eliminar y muestra alertas según corresponda.
+     */
     @FXML
     private void eliminarCopia() {
         CopiaLibro seleccionada = tablaCopias.getSelectionModel().getSelectedItem();
@@ -172,6 +195,10 @@ public class VerCopiasController {
         });
     }
 
+    /**
+     * Muestra una alerta informativa al usuario.
+     * @param mensaje Mensaje a mostrar en la alerta.
+     */
     private void mostrarAlerta(String mensaje) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Aviso");

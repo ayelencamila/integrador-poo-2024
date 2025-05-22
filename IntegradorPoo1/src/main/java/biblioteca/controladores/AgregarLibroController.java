@@ -79,6 +79,10 @@ public class AgregarLibroController {
             try {
                 if (!precioTexto.isEmpty()) {
                     precio = Double.parseDouble(precioTexto);
+                    if (precio < 0) {
+                        mostrarAlerta(Alert.AlertType.WARNING, "Dato inválido", "El precio estimado no puede ser negativo.");
+                        return;
+                    }
                 }
             } catch (NumberFormatException e) {
                 mostrarAlerta(Alert.AlertType.WARNING, "Dato inválido", "El precio estimado debe ser un número.");
