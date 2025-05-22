@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="biblioteca.controladores.VerPrestamosController"
             prefWidth="750" prefHeight="400">
 
-    <TableView fx:id="tablaPrestamos" layoutX="20" layoutY="20" prefWidth="710" prefHeight="320">
+    <TableView fx:id="tablaPrestamos"
+               AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="60">
         <columns>
             <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
             <TableColumn fx:id="colMiembro" text="Miembro" prefWidth="150"/>
@@ -18,5 +20,13 @@
         </columns>
     </TableView>
 
-    <Button text="Devolver libro" layoutX="300" layoutY="350" onAction="#devolver"/>
+    <HBox alignment="CENTER"
+          AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
+        <Button text="Devolver libro"
+                fx:id="btnDevolver"
+                onAction="#devolver"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+    </HBox>
 </AnchorPane>
