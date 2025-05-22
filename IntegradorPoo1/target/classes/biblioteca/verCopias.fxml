@@ -6,42 +6,45 @@
 <?import javafx.geometry.Pos?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="biblioteca.controladores.VerCopiasController"
-            prefWidth="700" prefHeight="500">
+            prefWidth="800" prefHeight="550" style="-fx-background-color: #f4f6f8;">
 
     <top>
-        <VBox spacing="10" alignment="CENTER">
+        <VBox spacing="15" alignment="CENTER" style="-fx-background-color: #2c3e50;">
             <padding>
-                <Insets top="20" bottom="10"/>
+                <Insets top="30" bottom="15" left="30" right="30"/>
             </padding>
-            <Label text="Gestión de Copias"/>
-            <HBox spacing="10" alignment="CENTER">
-                <Label text="Seleccionar libro:"/>
-                <ComboBox fx:id="comboLibros" promptText="Seleccione un libro" prefWidth="300"/>
-                <Button text="Buscar copias" onAction="#cargarCopias"/>
+            <Label text="Gestión de Copias" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill:rgb(250, 250, 250);"/>
+            <HBox spacing="12" alignment="CENTER">
+                <Label text="Seleccionar libro:" style="-fx-font-size: 14px; -fx-text-fill:rgb(250, 250, 250);"/>
+                <ComboBox fx:id="comboLibros" promptText="Seleccione un libro" prefWidth="320"/>
+                <Button text="Buscar copias" onAction="#cargarCopias" style="-fx-background-color: #2980b9; -fx-text-fill: white;"/>
             </HBox>
         </VBox>
     </top>
 
     <center>
-        <TableView fx:id="tablaCopias" prefHeight="350">
+        <TableView fx:id="tablaCopias" prefHeight="370" style="-fx-background-radius: 8; -fx-background-color: white;">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colTipo" text="Tipo" prefWidth="120"/>
-                <TableColumn fx:id="colEstado" text="Estado" prefWidth="120"/>
-                <TableColumn fx:id="colRack" text="Rack" prefWidth="200"/>
-                <TableColumn fx:id="colPrestadoA" text="Prestado a" prefWidth="200"/>
+                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="colTipo" text="Tipo" prefWidth="140"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="140"/>
+                <TableColumn fx:id="colRack" text="Rack" prefWidth="220"/>
+                <TableColumn fx:id="colPrestadoA" text="Prestado a" prefWidth="220"/>
             </columns>
         </TableView>
     </center>
 
     <bottom>
-        <HBox spacing="20" alignment="CENTER">
+        <HBox spacing="25" alignment="CENTER">
             <padding>
-                <Insets top="15" bottom="15"/>
+                <Insets top="18" bottom="18"/>
             </padding>
-            <Button text="Agregar copia" onAction="#agregarCopia"/>
-            <Button text="Modificar estado" onAction="#modificarCopia"/>
-            <Button text="Eliminar copia" onAction="#eliminarCopia"/>
+            <Button text="Agregar copia" onAction="#agregarCopia"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Button text="Modificar estado" onAction="#modificarCopia"
+                    style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold;"/>
+            <Button text="Eliminar copia" onAction="#eliminarCopia"
+                    style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;"/>
         </HBox>
     </bottom>
 </BorderPane>

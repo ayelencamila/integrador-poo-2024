@@ -9,7 +9,8 @@
 <VBox xmlns="http://javafx.com/javafx/8.0.171"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="biblioteca.controladores.PrincipalController"
-      spacing="15" alignment="CENTER" prefWidth="600" prefHeight="500">
+      spacing="30" alignment="TOP_CENTER" prefWidth="700" prefHeight="700"
+      style="-fx-background-color: linear-gradient(to bottom, #e9ecef, #f8f9fa);">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>

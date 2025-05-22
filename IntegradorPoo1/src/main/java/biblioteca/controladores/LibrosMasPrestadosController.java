@@ -59,6 +59,8 @@ public class LibrosMasPrestadosController {
 
         ObservableList<Map.Entry<String, Long>> datos = FXCollections.observableArrayList(librosOrdenados);
         tablaResumen.setItems(datos);
+
+        tablaResumen.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_FLEX_LAST_COLUMN);
     }
 
     /**

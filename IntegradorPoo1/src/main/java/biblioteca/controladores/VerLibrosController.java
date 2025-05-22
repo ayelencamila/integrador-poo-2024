@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,6 +83,9 @@ public class VerLibrosController {
     @FXML
     private TableColumn<Libro, Double> colPrecioEstimado;
 
+    @FXML
+    private ChoiceBox<String> tipoBusqueda;
+
     /**
      * Lista observable que contiene los libros mostrados en la tabla.
      */
@@ -106,6 +110,9 @@ public class VerLibrosController {
         List<Libro> libros = App.getServicio().getRepositorio().buscarTodos(Libro.class);
         datos = FXCollections.observableArrayList(libros);
         tablaLibros.setItems(datos);
+
+        tipoBusqueda.getItems().addAll("Título", "Autor", "Categoría");
+        tipoBusqueda.setValue("Título"); // Valor por defecto
     }
 
     @FXML
@@ -204,24 +211,36 @@ public class VerLibrosController {
      */
     @FXML
     private void buscarLibro() {
-        String texto = campoBusqueda.getText().toLowerCase().trim();
+        String criterio = campoBusqueda.getText().trim();
+        String tipo = tipoBusqueda.getValue(); // "Título", "Autor" o "Categoría"
 
-        if (texto.isEmpty()) {
-            tablaLibros.setItems(datos); // 'datos' es la lista completa de libros
+        if (tipo == null || criterio.isEmpty()) {
+            // Mostrar mensaje de error o restablecer tabla
             return;
         }
 
-        ObservableList<Libro> filtrados = FXCollections.observableArrayList();
-
+        // Ejemplo de filtro (ajusta según tu modelo de datos)
+        List<Libro> resultados = new ArrayList<>();
         for (Libro libro : datos) {
-            if ((libro.getTitulo() != null && libro.getTitulo().toLowerCase().contains(texto)) ||
-                    (libro.getAutor() != null && libro.getAutor().toLowerCase().contains(texto)) ||
-                    (libro.getCategoria() != null && libro.getCategoria().toLowerCase().contains(texto))) {
-                filtrados.add(libro);
+            switch (tipo) {
+                case "Título":
+                    if (libro.getTitulo().toLowerCase().contains(criterio.toLowerCase())) {
+                        resultados.add(libro);
+                    }
+                    break;
+                case "Autor":
+                    if (libro.getAutor().toLowerCase().contains(criterio.toLowerCase())) {
+                        resultados.add(libro);
+                    }
+                    break;
+                case "Categoría":
+                    if (libro.getCategoria().toLowerCase().contains(criterio.toLowerCase())) {
+                        resultados.add(libro);
+                    }
+                    break;
             }
         }
-
-        tablaLibros.setItems(filtrados);
+        tablaLibros.setItems(FXCollections.observableArrayList(resultados));
     }
 
     /**
@@ -231,5 +250,29 @@ public class VerLibrosController {
     private void restablecerBusqueda() {
         campoBusqueda.clear();
         tablaLibros.setItems(datos);
+    }
+
+    @FXML
+    private void handleMouseEntered(javafx.scene.input.MouseEvent event) {
+        Button btn = (Button) event.getSource();
+        btn.setStyle("-fx-background-color: linear-gradient(to bottom, #e3eafc, #b6c8e6); -fx-text-fill: #22304a; -fx-font-weight: bold; -fx-background-radius: 8;");
+    }
+
+    @FXML
+    private void handleMouseExited(javafx.scene.input.MouseEvent event) {
+        Button btn = (Button) event.getSource();
+        btn.setStyle("-fx-background-color: linear-gradient(to bottom, #f4f6fa, #dbe6f6); -fx-text-fill: #22304a; -fx-font-weight: bold; -fx-background-radius: 8;");
+    }
+
+    @FXML
+    private void handleMouseEnteredEliminar(javafx.scene.input.MouseEvent event) {
+        Button btn = (Button) event.getSource();
+        btn.setStyle("-fx-background-color: linear-gradient(to bottom, #ffeaea, #ffb6b6); -fx-text-fill: #c0392b; -fx-font-weight: bold; -fx-background-radius: 8;");
+    }
+
+    @FXML
+    private void handleMouseExitedEliminar(javafx.scene.input.MouseEvent event) {
+        Button btn = (Button) event.getSource();
+        btn.setStyle("-fx-background-color: linear-gradient(to bottom, #f4f6fa, #dbe6f6); -fx-text-fill: #c0392b; -fx-font-weight: bold; -fx-background-radius: 8;");
     }
 }
